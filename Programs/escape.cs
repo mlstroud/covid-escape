@@ -81,6 +81,11 @@ namespace Game
         itemsInRoom["mirror"] = "A small handheld mirror.";
 
       }
+      else if (_livingroom == true)
+      {
+        itemsInRoom.Clear();
+        itemsInRoom["mask"] = "A C95 protective mask. A recent staple in everyone's inventory.";
+      }
     }
 
     public static void PickUp(string item)

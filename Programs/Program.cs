@@ -55,7 +55,7 @@ namespace NewGame
           }
           goto Start;
         }
-        else if (startInput == "clean room" || startInput == "pick up clothes" || startInput == "search room")
+        else if (startInput == "clean room" || startInput == "pick up clothes" || startInput == "search room" || startInput == "clothes")
         {
           Console.WriteLine("You spend some time moving things about in the bedroom, and beneath the pile of clothes find another scrap of paper with the numbers '67' written on it. It looks to be the other half of the note that was on the desk.");
           Rooms.inventory["note2"] = "The other half of the note on the desk. It reads '67'";
@@ -70,7 +70,28 @@ namespace NewGame
       while (Rooms._livingroom == true)
       {
       Start:
-        Console.WriteLine("The livingroom");
+        Rooms.ItemsAvailable();
+        Console.WriteLine("The livingroom is unusually warm, and you smell the distinct aroma of smoke. Where it is coming from is a mystery, however. A couch that looks like it has never been cleaned sits against the right wall, and to your left is a television with nothing but static on the screen. \n\nWhat would you like to do[Look Around/Enter Kitchen]");
+        string livingInput = (Console.ReadLine().ToLower());
+
+        if (livingInput == "enter kitchen")
+        {
+          Console.WriteLine(Rooms.EnterKitchen());
+        }
+        else if (livingInput == "look around")
+        {
+          Console.WriteLine("There isn't much too this room. It looks as though it has been uninhabited for a long time. However, peeking out from between two couch cushions is a face-mask. You wonder what else you might find if you look in the right place.\n\n");
+          DisplayItems();
+          Console.WriteLine("\n\nWhat would you like to do? [Pick-up Mask]");
+          string userInput = (Console.ReadLine().ToLower());
+          if (userInput == "pick-up mask" || userInput == "pick up mask" || userInput == "get mask")
+          {
+            Rooms.PickUp(userInput);
+            goto Start;
+          }
+
+
+        }
       }
     }
 
