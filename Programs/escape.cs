@@ -5,17 +5,18 @@ namespace Game
 {
   public class Rooms
   {
-    public bool _bedroom { get; set; }
-    public bool _kitchen { get; set; }
-    public bool _livingroom { get; set; }
-    public bool _basement { get; set; }
+    public static bool _bedroom { get; set; }
+    public static bool _kitchen { get; set; }
+    public static bool _livingroom { get; set; }
+    public static bool _basement { get; set; }
 
-    public List<string> inventory { get; set; }
-    public string EnterBedroom()
+    public static Dictionary<string, string> inventory = new Dictionary<string, string>();
+    public static Dictionary<string, string> itemsInRoom = new Dictionary<string, string>();
+    public static string EnterBedroom()
     {
-      if (_bedroom = true)
+      if (_bedroom == true)
       {
-        return "You are already in the bedroom.";
+        return "\nYou are already in the bedroom.";
       }
       else
       {
@@ -23,14 +24,14 @@ namespace Game
         _kitchen = false;
         _livingroom = false;
         _basement = false;
-        return "You enter the bedroom.";
+        return "\nYou enter the bedroom.";
       }
     }
-    public string EnterKitchen()
+    public static string EnterKitchen()
     {
-      if (_kitchen = true)
+      if (_kitchen == true)
       {
-        return "You are already in the kitchen.";
+        return "\nYou are already in the kitchen.";
       }
       else
       {
@@ -38,14 +39,14 @@ namespace Game
         _kitchen = true;
         _livingroom = false;
         _basement = false;
-        return "You enter the kitchen.";
+        return "\nYou enter the kitchen.";
       }
     }
-    public string EnterLivingRoom()
+    public static string EnterLivingRoom()
     {
-      if (_livingroom = true)
+      if (_livingroom == true)
       {
-        return "You are already in the livingroom.";
+        return "\nYou are already in the livingroom.";
       }
       else
       {
@@ -53,14 +54,14 @@ namespace Game
         _kitchen = false;
         _livingroom = true;
         _basement = false;
-        return "You enter the livingroom.";
+        return "\nYou enter the livingroom.";
       }
     }
-    public string EnterBasement()
+    public static string EnterBasement()
     {
-      if (_basement = true)
+      if (_basement == true)
       {
-        return "You are already in the basement.";
+        return "\nYou are already in the basement.";
       }
       else
       {
@@ -68,9 +69,18 @@ namespace Game
         _kitchen = false;
         _livingroom = false;
         _basement = true;
-        return "You cautiously enter the basement.";
+        return "\nYou cautiously enter the basement.";
       }
     }
+    public static void ItemsAvailable()
+    {
+      if (_bedroom == true)
+      {
+        itemsInRoom.Clear();
+        itemsInRoom["note"] = "A torn scrap of paper, on which is written the numbers '36'";
+        itemsInRoom["mirror"] = "A small handheld mirror.";
 
+      }
+    }
   }
 }
