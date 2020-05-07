@@ -25,9 +25,19 @@ namespace NewGame
       else if (startInput == "look around")
       {
         Console.WriteLine("\nIn the bedroom, you can see:\n\nA " + Rooms.itemsInRoom.Keys.ElementAt(0) + "\nA " + Rooms.itemsInRoom.Keys.ElementAt(1) + "\n");
+
+        Console.WriteLine("What would you like to pick up?");
+        string userAction = (Console.ReadLine()).ToLower();
+        Rooms.PickUp(userAction);
+        Console.WriteLine("\nIn the bedroom, you can see:\n\nA " + Rooms.itemsInRoom.Keys.ElementAt(0) + "\nA " + "\n");
       }
       else
       { Console.WriteLine("I'm sorry, I can't do that right now."); }
+    }
+
+    public void DisplayItems()
+    {
+
     }
   }
 }

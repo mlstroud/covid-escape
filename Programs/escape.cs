@@ -82,5 +82,14 @@ namespace Game
 
       }
     }
+
+    public static void PickUp(string item)
+    {
+      if (itemsInRoom.ContainsKey(item))
+      {
+        inventory.Add(item, itemsInRoom[item]);
+        itemsInRoom.Remove(item);
+      }
+    }
   }
 }
