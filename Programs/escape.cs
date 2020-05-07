@@ -86,6 +86,12 @@ namespace Game
         itemsInRoom.Clear();
         itemsInRoom["mask"] = "A C95 protective mask. A recent staple in everyone's inventory.";
       }
+      else if (_kitchen == true)
+      {
+        itemsInRoom.Clear();
+        itemsInRoom["potatoes"] = "A small cloth sack of potatoes. It is sealed shut with multiple industrial staples, as if someone did not want you to look inside.";
+        itemsInRoom["pot"] = "A medium-sized pot with a lid. Seems noisy.";
+      }
     }
 
     public static void PickUp(string item)

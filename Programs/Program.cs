@@ -70,7 +70,7 @@ namespace NewGame
       while (Rooms._livingroom == true)
       {
       Start:
-        Console.WriteLine("The livingroom is unusually warm, and you smell the distinct aroma of smoke. Where it is coming from is a mystery, however. A couch that looks like it has never been cleaned sits against the right wall, and to your left is a television with nothing but static on the screen. \n\nWhat would you like to do[Look Around/Enter Kitchen]");
+        Console.WriteLine("The livingroom is unusually warm, and you smell the distinct aroma of smoke. Where it is coming from is a mystery, however. A couch that looks like it has never been cleaned sits against the right wall, and to your left is a television with nothing but static on the screen. \n\nWhat would you like to do[Look Around/Enter Kitchen/Look At Inventory]");
         string livingInput = (Console.ReadLine().ToLower());
 
         if (livingInput == "enter kitchen")
@@ -81,7 +81,7 @@ namespace NewGame
         {
           Console.WriteLine("There isn't much too this room. It looks as though it has been uninhabited for a long time. However, peeking out from between two couch cushions is a face-mask. You wonder what else you might find if you look in the right place.\n\n");
           DisplayItems();
-          Console.WriteLine("\n\nWhat would you like to do? [Pick-up Mask]");
+          Console.WriteLine("\n\nWhat would you like to do? [Pick-up Item]");
           string userInput = (Console.ReadLine().ToLower());
           if (userInput == "pick-up mask" || userInput == "pick up mask" || userInput == "get mask")
           {
@@ -106,6 +106,57 @@ namespace NewGame
           Rooms.itemsInRoom["glass"] = "A large shard of glass from the television screen. Handle with caution; It's sharp!";
           goto Start;
 
+        }
+        else if (livingInput == "look at inventory")
+        {
+          foreach (KeyValuePair<string, string> item in Rooms.inventory)
+          {
+            Console.WriteLine(item.Key + " - " + item.Value);
+          }
+          goto Start;
+        }
+        else if (livingInput == "enter kitchen")
+        {
+          Console.WriteLine(Rooms.EnterKitchen());
+        }
+      }
+
+      Rooms.ItemsAvailable();
+      while (Rooms._kitchen == true)
+      {
+      Start:
+        Console.WriteLine("The kitchen is as similarly small as the rest of the apartment. There is a door on the far wall, and a pantry to your left. Sitting on the counter is a bag of potatoes. The wallpaper is grimy from years of burnt food cooked on the stove. Over all, not a pleasant place to be. \n\n What would you like to do? [Enter Livingroom/Look Around/Open Door]");
+
+        string kitchenInput = (Console.ReadLine().ToLower());
+        if (kitchenInput == "enter livingroom")
+        {
+          Console.WriteLine(Rooms.EnterLivingRoom());
+        }
+        else if (kitchenInput == "look around")
+        {
+          Console.WriteLine("There are numerous pots and pans scattered about the counter top, and the distinct smell of old food emanates from the refridgerator. \n\nWhat would you like to do? [Pick up item]\n");
+          DisplayItems();
+          string userInput = (Console.ReadLine().ToLower());
+          if (userInput == "pick up potatoes" || userInput == "pick-up potatoes" || userInput == "get potatoes")
+          {
+            Rooms.PickUp("potatoes");
+            goto Start;
+          }
+        }
+        else if (kitchenInput == "open door")
+        {
+          Console.WriteLine("You try your best to open the door, but it is locked shut. Where did you put your key? Hmmm. Quandries.");
+          goto Start;
+        }
+        else if (kitchenInput == "cut potatoes" && Rooms.inventory.ContainsKey("glass") || kitchenInput == "open potatoes" && Rooms.inventory.ContainsKey("glass") || kitchenInput == "cut potato sack" && Rooms.inventory.ContainsKey("glass") || kitchenInput == "open potato sack" && Rooms.inventory.ContainsKey("glass"))
+        {
+          Console.WriteLine("You cut open the bag of potatoes, and numerous spongy eye-ridden taters spill out on the counter. Amidst them you find a small key! It's your key! You found it!");
+          Rooms.inventory["key"] = "A small brass key. It goes to your kitchen door.";
+          goto Start;
+        }
+        else if (kitchenInput == "open door" && Rooms.inventory.ContainsKey("key"))
+        {
+          Console.WriteLine("You slip the key into the lock and twist. The deadbolt opens like a charm, and you open the door. A rush of warm air greets you as the light fills your eyes. After a few moments of adjustment, you gaze upon the outside world for the first time in you don't know how long.\n\nIt's a wasteland out there; Cars stopped in the middle of the street, houses half-demolished, phone-lines stripped for the copper within. A pack of dogs wanders toward your apartment, looking quite hungry and not at all friendly. You wonder if maybe you should have stayed inside.\n\nGoodbye.");
         }
       }
     }
