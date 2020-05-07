@@ -12,9 +12,6 @@ namespace NewGame
       Rooms game = new Rooms();
       Rooms.EnterBedroom();
       Rooms.ItemsAvailable();
-      // Start:
-      // Console.WriteLine("\nYou wake up from a deep slumber, not remembering how long it has been since you fell asleep. Under warm blankets in bed, you slowly rouse to consciousness and remember it is just another day in Quarantine. But something inside you tells you you need to leave.\n \nWhat would you like to do? [Enter Livingroom/Stay in Bed/Look Around]");
-      // string startInput = (Console.ReadLine()).ToLower();
 
       while (Rooms._bedroom == true)
       {
