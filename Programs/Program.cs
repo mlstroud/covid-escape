@@ -9,7 +9,6 @@ namespace NewGame
   {
     public static void Main()
     {
-      string currentRoom = "bedroom";
       Rooms game = new Rooms();
       Rooms.EnterBedroom();
       Rooms.ItemsAvailable();
@@ -66,11 +65,11 @@ namespace NewGame
           Console.WriteLine("I'm sorry, I can't do that right now.");
           goto Start;
         }
+        Rooms.ItemsAvailable();
       }
       while (Rooms._livingroom == true)
       {
       Start:
-        Rooms.ItemsAvailable();
         Console.WriteLine("The livingroom is unusually warm, and you smell the distinct aroma of smoke. Where it is coming from is a mystery, however. A couch that looks like it has never been cleaned sits against the right wall, and to your left is a television with nothing but static on the screen. \n\nWhat would you like to do[Look Around/Enter Kitchen]");
         string livingInput = (Console.ReadLine().ToLower());
 
@@ -86,10 +85,26 @@ namespace NewGame
           string userInput = (Console.ReadLine().ToLower());
           if (userInput == "pick-up mask" || userInput == "pick up mask" || userInput == "get mask")
           {
-            Rooms.PickUp(userInput);
+            Rooms.PickUp("mask");
             goto Start;
           }
-
+          else if (userInput == "pick up glass" || userInput == "pick-up glass")
+          {
+            Rooms.PickUp("glass");
+            Console.WriteLine("You pick up the shard of glass carefully.");
+          }
+        }
+        else if (livingInput == "move couch" || livingInput == "look under couch" || livingInput == "look in couch")
+        {
+          Console.WriteLine("You check under the couch cushions and find nothing else. However, a thought strikes you to move the couch and behind it you find a baseball bat. You pick it up. Something tells you it might be useful.");
+          Rooms.inventory["baseball bat"] = "An aluminum baseball bat. Light in the hand, but sturdy enough to break things with.";
+          goto Start;
+        }
+        else if (Rooms.inventory.ContainsKey("baseball bat") && livingInput == "smash tv")
+        {
+          Console.WriteLine("You swing hard and smash the television screen. It shatters into pieces and sparks fly. It was fun, but you can't figure out what you did that for.");
+          Rooms.itemsInRoom["glass"] = "A large shard of glass from the television screen. Handle with caution; It's sharp!";
+          goto Start;
 
         }
       }
