@@ -57,21 +57,6 @@ namespace Game
         return "\nYou enter the livingroom.";
       }
     }
-    public static string EnterBasement()
-    {
-      if (_basement == true)
-      {
-        return "\nYou are already in the basement.";
-      }
-      else
-      {
-        _bedroom = false;
-        _kitchen = false;
-        _livingroom = false;
-        _basement = true;
-        return "\nYou cautiously enter the basement.";
-      }
-    }
     public static void ItemsAvailable()
     {
       if (_bedroom == true)
